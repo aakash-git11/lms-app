@@ -1,0 +1,81 @@
+<div>
+    <div class="container text-center">
+      <br />
+      <br />
+      <div class="row">
+        <div class="col-9">
+          <div class="row">
+            <div class="col-6">
+              <div class="input-group">
+                <input
+                  type="text" required=""
+                  class="form-control rounded"
+                  placeholder="Search Courses By Technology"
+                  aria-label="Search"
+                  aria-describedby="search-addon"
+                 [(ngModel)]="searchText" 
+                />
+                <button type="button" class="btn btn-outline-primary"  (click)="searchByTechnology()">
+                  search
+                </button>
+              </div>
+            </div>
+            <div class="col-3">
+              <select
+                class="form-select"
+                aria-label="Default select example"    
+                (change)="sortByTechnology()" 
+                [(ngModel)]="selectedTechnology"           
+              >
+                <option value="undefined" selected>--Select Technology--</option>
+                <option *ngFor="let tech of TechnologyList" value={{tech}}>{{tech}}</option>               
+              </select>
+            </div>
+            <div class="col-3">
+              <select
+                class="form-select"
+                aria-label="Default select example"
+                (change)="SortCoursesByDuration()"
+                [(ngModel)]="selectedDuration"
+              >
+                <option value="undefined">Select Duration Range</option>
+                <option value="1-10">1-10</option>
+                <option value="10-20">10-20</option>
+                <option value="20-30">20-30</option>
+                <option value="30-40">30-40</option>
+                <option value="40-60">40-60</option>
+                <option value="60-80">60-80</option>
+                <option value="80-120">80-120</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br />
+      <hr />
+      <br />
+      <div class="row">
+        <div class="col" *ngIf="flag==true">
+          <table class="table table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">Course Name</th>
+                <th scope="col">Technology</th>
+                <th scope="col">Course Duration</th>
+                <th scope="col">Course Description</th>
+              </tr>
+            </thead>           
+            <tbody>
+                <tr *ngFor="let item of CourseList">
+                    <td>{{item.courseName}}</td>
+                    <td>{{item.courseTechnology}}</td>
+                    <td>{{item.courseDuration}}</td>
+                    <td>{{item.courseDescription}}</td>
+                </tr>                  
+            </tbody>                       
+          </table>          
+        </div>
+        <div class="col" *ngIf="flag==false">No Course Found!</div>
+      </div>
+    </div>
+  </div>
